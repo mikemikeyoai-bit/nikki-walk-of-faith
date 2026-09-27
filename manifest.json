@@ -1,0 +1,22 @@
+{
+    "name": "For Nikki — A Walk of Faith",
+    "short_name": "Walk of Faith",
+    "description": "A personal place of faith and worship for Nikki.",
+    "start_url": "./",
+    "display": "standalone",
+    "background_color": "#f5ead4",
+    "theme_color": "#8a672d",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "icons/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
