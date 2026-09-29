@@ -26,6 +26,7 @@
 <body>
 
     <main>
+<div class="app-screen active-screen" id="home-screen">
         <header class="app-header">
     <p class="dedication">FOR NIKKI</p>
 
@@ -34,7 +35,8 @@
     <div class="header-symbol">✝</div>
 
     <p class="subtitle">
-        Faith for today. Hope for tomorrow.
+        When the path feels uncertain,<br>
+    keep walking in faith.
     </p>
 </header>
         <section>
@@ -69,13 +71,375 @@
         </iframe>
     </div>
 </section>
-               <section>
-            <h2>Movie Night</h2>
+         <section class="card memories-card">
+    <h2>Blessings &amp; Memories</h2>
 
-            <button type="button">
-                ▶ Watch Movie
-            </button>
+    <p class="memories-intro">
+        A little collection of the people, moments, and memories that make life beautiful.
+    </p>
+
+    <div class="slideshow" id="memory-slideshow">
+
+        <button
+            class="slide-btn prev-btn"
+            id="prev-slide"
+            aria-label="Previous photo">
+            &#10094;
+        </button>
+
+        <div class="slide-frame">
+            <img
+                id="memory-photo"
+                src="images/slideshow/photo-01.jpg"
+                alt="A special memory">
+        </div>
+
+        <button
+            class="slide-btn next-btn"
+            id="next-slide"
+            aria-label="Next photo">
+            &#10095;
+        </button>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span>
+        <span class="counter-divider">/</span>
+        <span id="total-slides">13</span>
+    </div>
+
+    <button class="slideshow-toggle" id="slideshow-toggle">
+        ❚❚ Pause
+    </button>
+</section>
+<!-- Fullscreen Memory Viewer -->
+<div class="photo-viewer" id="photo-viewer" aria-hidden="true">
+
+    <button
+        class="viewer-close"
+        id="viewer-close"
+        aria-label="Close photo">
+        &times;
+    </button>
+
+    <button
+        class="viewer-nav viewer-prev"
+        id="viewer-prev"
+        aria-label="Previous photo">
+        &#10094;
+    </button>
+
+    <img
+        id="viewer-photo"
+        src=""
+        alt="Enlarged memory">
+
+    <button
+        class="viewer-nav viewer-next"
+        id="viewer-next"
+        aria-label="Next photo">
+        &#10095;
+    </button>
+
+</div>
         </section>
+<footer class="app-footer">
+    <p>May His light always find you.</p>
+</footer>
+</div>
+<div class="app-screen" id="journal-screen">
+
+    <header class="screen-header">
+        <h1>Journal</h1>
+        <p>A quiet place for your thoughts, prayers, and reflections.</p>
+    </header>
+
+ <!-- ============================= -->
+<!-- DAILY REFLECTION -->
+<!-- ============================= -->
+
+<section class="daily-reflection-card">
+
+    <div class="reflection-header">
+        <h2>Daily Reflection</h2>
+    </div>
+
+    <p id="reflectionDate" class="reflection-date"></p>
+
+    <div class="reflection-divider"></div>
+
+    <blockquote id="dailyReflection" class="reflection-text">
+        Loading today's reflection...
+    </blockquote>
+
+</section>  
+
+<!-- ============================= -->
+<!-- PRIVATE JOURNAL -->
+<!-- ============================= -->
+
+<section class="journal-card">
+
+    <div class="journal-entry-header">
+
+        <h2 id="journalEntryTitle">
+            Today's Entry
+        </h2>
+
+        <p
+            id="journalEntryDate"
+            class="journal-entry-date">
+        </p>
+
+    </div>
+
+
+    <textarea
+        id="journalEntry"
+        class="journal-entry-box"
+        placeholder="Where did God meet you today?"
+        aria-label="Journal entry">
+    </textarea>
+
+
+    <div class="journal-save-area">
+
+        <button
+            id="saveJournalEntry"
+            class="journal-save-button">
+            Save Entry
+        </button>
+
+        <p
+            id="journalSaveStatus"
+            class="journal-save-status">
+        </p>
+
+    </div>
+
+
+    <!-- Only appears while viewing an older entry -->
+
+    <button
+        id="returnToToday"
+        class="return-today-button"
+        hidden>
+        Return to Today
+    </button>
+
+
+    <div class="journal-divider"></div>
+
+
+    <!-- PREVIOUS ENTRIES -->
+
+    <button
+        id="openJournalCalendar"
+        class="previous-entries-button">
+
+        <span class="calendar-button-icon">
+            📅
+        </span>
+
+        <span>
+            Previous Entries
+        </span>
+
+    </button>
+
+
+    <div class="journal-divider"></div>
+
+
+    <!-- BACKUP -->
+
+    <div class="journal-backup">
+
+        <h2>Journal Backup</h2>
+
+        <p class="journal-backup-note">
+            Keep a private copy of your journal safe.
+        </p>
+
+        <div class="journal-backup-buttons">
+
+            <button id="backupJournal">
+                Backup Journal
+            </button>
+
+            <button id="restoreJournal">
+                Restore Backup
+            </button>
+
+        </div>
+
+        <input
+            type="file"
+            id="restoreJournalFile"
+            accept=".json,application/json"
+            hidden>
+
+<p id="journalBackupStatus"></p>
+
+    </div>
+
+</section>
+
+<!-- ============================= -->
+<!-- JOURNAL CALENDAR -->
+<!-- ============================= -->
+
+<div
+    class="journal-calendar-overlay"
+    id="journalCalendarOverlay"
+    aria-hidden="true">
+
+    <div class="journal-calendar">
+
+        <div class="calendar-top">
+
+            <button
+                id="previousCalendarMonth"
+                class="calendar-arrow"
+                aria-label="Previous month">
+                &#10094;
+            </button>
+
+            <h2 id="calendarMonthTitle">
+                September 2026
+            </h2>
+
+            <button
+                id="nextCalendarMonth"
+                class="calendar-arrow"
+                aria-label="Next month">
+                &#10095;
+            </button>
+
+        </div>
+
+
+        <div class="calendar-weekdays">
+            <span>Sun</span>
+            <span>Mon</span>
+            <span>Tue</span>
+            <span>Wed</span>
+            <span>Thu</span>
+            <span>Fri</span>
+            <span>Sat</span>
+        </div>
+
+
+        <div
+            class="calendar-days"
+            id="calendarDays">
+        </div>
+
+
+        <p class="calendar-help">
+            Highlighted days contain a journal entry.
+        </p>
+
+
+        <button
+            id="closeJournalCalendar"
+            class="calendar-close-button">
+            Close
+        </button>
+
+    </div>
+
+</div>
+
+</div>
+
+<div class="app-screen" id="journey-screen">
+
+    <header class="screen-header">
+               <h1>My Journey</h1>
+    </header>
+
+
+    <section class="journey-video">
+        <h2>Part One</h2>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/LRHHbm1B1zY"
+                title="My Journey — Part One"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+
+    <section class="journey-video">
+        <h2>Part Two</h2>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/lvkmTiKfTvU"
+                title="My Journey — Part Two"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+
+    <section class="journey-video">
+        <h2>Part Three</h2>
+
+        <div class="video-container">
+            <iframe
+                src="https://www.youtube.com/embed/HNAiKSjj2eM"
+                title="My Journey — Part Three"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen>
+            </iframe>
+        </div>
+    </section>
+
+</div>
+
+<nav class="bottom-nav" aria-label="Main navigation">
+
+    <button
+        class="nav-button active-nav"
+        data-screen="home-screen"
+        aria-label="Home">
+
+        <span class="nav-icon">✝</span>
+        <span class="nav-label">Home</span>
+
+    </button>
+
+    <button
+        class="nav-button"
+        data-screen="journal-screen"
+        aria-label="Journal">
+
+        <span class="nav-icon">✎</span>
+        <span class="nav-label">Journal</span>
+
+    </button>
+
+    <button
+        class="nav-button"
+        data-screen="journey-screen"
+        aria-label="My Journey">
+
+        <span class="nav-icon">▶</span>
+        <span class="nav-label">My Journey</span>
+
+    </button>
+
+</nav>
     </main>
 
     <script src="app.js"></script>

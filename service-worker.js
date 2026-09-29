@@ -1,4 +1,4 @@
-const CACHE_NAME = "nikki-walk-of-faith-v1";
+const CACHE_NAME = "nikki-walk-of-faith-v2";
 
 const APP_FILES = [
     "./",
@@ -6,7 +6,7 @@ const APP_FILES = [
     "./style.css",
     "./app.js",
     "./manifest.json",
-    "./images/faith-background.png",
+    "./images/faith-background.jpg",
     "./icons/icon-192.png",
     "./icons/icon-512.png",
     "./icons/apple-touch-icon.png"

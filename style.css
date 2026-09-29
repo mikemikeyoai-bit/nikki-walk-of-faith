@@ -18,7 +18,7 @@ body {
             rgba(35, 27, 18, 0.18),
             rgba(35, 27, 18, 0.28)
         ),
-        url("images/faith-background.png");
+        url("images/faith-background.jpg");
 
     background-size: cover;
     background-position: center;
@@ -235,4 +235,700 @@ section > p {
         padding: 24px 18px;
         border-radius: 19px;
     }
+}
+.app-footer {
+    margin: 34px 0 10px;
+    text-align: center;
+
+    color: white;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    font-style: italic;
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.55);
+}
+
+.app-footer p {
+    margin: 0;
+}
+/* =========================================
+   BLESSINGS & MEMORIES
+   ========================================= */
+
+.memories-card {
+    text-align: center;
+}
+
+.memories-card h2 {
+    margin-bottom: 8px;
+}
+
+.memories-intro {
+    margin: 0 auto 18px;
+    max-width: 500px;
+    line-height: 1.5;
+}
+
+/* Slideshow layout */
+.slideshow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+
+/* Photo area */
+.slide-frame {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    height: 360px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    border-radius: 14px;
+
+    background: rgba(0, 0, 0, 0.45);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* Actual photograph */
+#memory-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    cursor: zoom-in;
+
+    opacity: 1;
+    transition: opacity 0.4s ease;
+}
+
+/* Previous / Next buttons */
+.slide-btn {
+    flex: 0 0 42px;
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.85);
+    color: #4a3b27;
+
+    font-size: 1.4rem;
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+}
+
+.slide-btn:active {
+    transform: scale(0.94);
+}
+
+/* Counter */
+.slide-counter {
+    margin-top: 12px;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.counter-divider {
+    margin: 0 4px;
+}
+
+/* Pause / Play button */
+.slideshow-toggle {
+    margin-top: 10px;
+    padding: 8px 16px;
+
+    border: none;
+    border-radius: 20px;
+
+    background: rgba(255, 255, 255, 0.85);
+    color: #4a3b27;
+
+    font: inherit;
+    cursor: pointer;
+
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Smaller phone screens */
+@media (max-width: 600px) {
+
+    .slideshow {
+        gap: 6px;
+    }
+
+    .slide-frame {
+        height: 300px;
+    }
+
+    .slide-btn {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+        font-size: 1.15rem;
+    }
+}
+/* =========================================
+   FULLSCREEN MEMORY VIEWER
+   ========================================= */
+
+.photo-viewer {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.92);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+/* Viewer is open */
+.photo-viewer.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enlarged photograph */
+#viewer-photo {
+    display: block;
+
+    max-width: 95vw;
+    max-height: 90vh;
+
+    width: auto;
+    height: auto;
+
+    object-fit: contain;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 8px 35px rgba(0, 0, 0, 0.55);
+}
+
+/* Close button */
+.viewer-close {
+    position: absolute;
+
+    top: max(18px, env(safe-area-inset-top));
+    right: 20px;
+
+    width: 46px;
+    height: 46px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.9);
+    color: #222;
+
+    font-size: 2rem;
+    line-height: 1;
+
+    cursor: pointer;
+
+    z-index: 10000;
+}
+
+.viewer-close:active {
+    transform: scale(0.94);
+}
+/* Fullscreen viewer navigation */
+
+.viewer-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.85);
+    color: #222;
+
+    font-size: 1.5rem;
+
+    cursor: pointer;
+
+    z-index: 10000;
+}
+
+.viewer-prev {
+    left: 18px;
+}
+
+.viewer-next {
+    right: 18px;
+}
+
+.viewer-nav:active {
+    transform: translateY(-50%) scale(0.94);
+}
+
+
+/* Give the arrows a little more room on phones */
+
+@media (max-width: 600px) {
+
+    .viewer-nav {
+        width: 42px;
+        height: 42px;
+
+        background: rgba(255, 255, 255, 0.75);
+    }
+
+    .viewer-prev {
+        left: 8px;
+    }
+
+    .viewer-next {
+        right: 8px;
+    }
+
+    #viewer-photo {
+        max-width: 92vw;
+        max-height: 85vh;
+    }
+}
+/* =========================================
+   APP SCREENS & BOTTOM NAVIGATION
+   ========================================= */
+
+/* Hide inactive screens */
+.app-screen {
+    display: none;
+}
+
+/* Show only the active screen */
+.app-screen.active-screen {
+    display: block;
+}
+
+/* =========================================
+   DAILY REFLECTION
+   ========================================= */
+
+.daily-reflection-card {
+    margin: 24px 0;
+    padding: 26px 22px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(180, 150, 110, 0.25);
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.reflection-header h2 {
+    margin: 0;
+    font-size: 1.45rem;
+    font-weight: 600;
+}
+
+.reflection-date {
+    margin: 7px 0 0;
+    font-size: 0.9rem;
+    opacity: 0.65;
+}
+
+.reflection-divider {
+    width: 48px;
+    height: 1px;
+    margin: 18px auto;
+    background: currentColor;
+    opacity: 0.25;
+}
+
+.reflection-text {
+    margin: 0;
+    padding: 4px 6px;
+    border: 0;
+    font-size: 1.15rem;
+    line-height: 1.7;
+    font-style: italic;
+     white-space: pre-line;
+}
+
+
+/* -------------------------
+   JOURNAL / JOURNEY HEADERS
+------------------------- */
+
+.screen-header {
+    text-align: center;
+    color: white;
+
+    margin: 15px 0 32px;
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.5);
+}
+
+.screen-symbol {
+    margin-bottom: 8px;
+
+    font-size: 1.6rem;
+    color: #f4d58a;
+}
+
+.screen-header h1 {
+    margin: 0 0 8px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(2.3rem, 8vw, 3.6rem);
+    font-weight: normal;
+}
+
+.screen-header p {
+    margin: 0 auto;
+
+    max-width: 500px;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1rem;
+    font-style: italic;
+
+    line-height: 1.5;
+}
+
+/* =========================================
+   JOURNAL WRITING AREA
+   ========================================= */
+
+.journal-entry-box {
+    display: block;
+    width: 100%;
+    min-height: 220px;
+    box-sizing: border-box;
+
+    margin: 18px 0 16px;
+    padding: 18px;
+
+    resize: vertical;
+
+    background: rgba(255, 255, 255, 0.55);
+    border: 1px solid rgba(160, 120, 55, 0.35);
+    border-radius: 14px;
+
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.65;
+
+    color: #4a3b29;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.journal-entry-box::placeholder {
+    color: rgba(74, 59, 41, 0.5);
+}
+
+.journal-entry-box:focus {
+    background: rgba(255, 255, 255, 0.75);
+    border-color: rgba(165, 120, 40, 0.7);
+
+    box-shadow:
+        0 0 0 3px rgba(180, 135, 55, 0.10);
+}
+
+/* -------------------------
+   BOTTOM NAVIGATION
+------------------------- */
+
+.bottom-nav {
+    position: fixed;
+
+    left: 50%;
+    bottom: max(12px, env(safe-area-inset-bottom));
+
+    transform: translateX(-50%);
+
+    z-index: 5000;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    width: calc(100% - 28px);
+    max-width: 620px;
+
+    padding: 7px;
+
+    background: rgba(255, 251, 241, 0.94);
+
+    border: 1px solid rgba(255, 222, 145, 0.7);
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(32, 22, 12, 0.28);
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+
+/* Override our normal button styling */
+.nav-button {
+    flex: 1;
+
+    min-height: 54px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 2px;
+
+    padding: 5px 8px;
+
+    border: none;
+    border-radius: 16px;
+
+    background: transparent;
+    color: #6b5a42;
+
+    box-shadow: none;
+
+    font-weight: normal;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        transform 0.15s ease;
+}
+
+.nav-button:hover {
+    box-shadow: none;
+}
+
+.nav-button:active {
+    transform: scale(0.96);
+}
+
+.nav-icon {
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.nav-label {
+    font-size: 0.75rem;
+    line-height: 1.2;
+}
+
+
+/* Current screen */
+.nav-button.active-nav {
+    background: rgba(154, 116, 48, 0.14);
+    color: #76551f;
+}
+
+.nav-button.active-nav .nav-icon {
+    color: #987231;
+}
+
+
+/* Keep page content above fixed navigation */
+body {
+    padding-bottom: 110px;
+}
+
+
+/* Small phones */
+@media (max-width: 500px) {
+
+    .bottom-nav {
+        width: calc(100% - 20px);
+        bottom: max(8px, env(safe-area-inset-bottom));
+    }
+
+    .nav-button {
+        min-height: 52px;
+    }
+
+    .nav-label {
+        font-size: 0.72rem;
+    }
+}
+/* =========================================
+   JOURNAL CALENDAR
+   ========================================= */
+
+.journal-calendar-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.72);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease;
+}
+
+.journal-calendar-overlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.journal-calendar {
+    width: 100%;
+    max-width: 430px;
+
+    padding: 24px 18px;
+
+    background: #f7f1e5;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.4);
+
+    color: #4a3b29;
+}
+
+.calendar-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 20px;
+}
+
+.calendar-top h2 {
+    margin: 0;
+
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.25rem;
+}
+
+.calendar-arrow {
+    width: 40px;
+    height: 40px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(157, 117, 48, 0.14);
+    color: #76551f;
+
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.calendar-weekdays,
+.calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.calendar-weekdays {
+    margin-bottom: 8px;
+
+    text-align: center;
+
+    font-size: 0.72rem;
+    font-weight: bold;
+
+    opacity: 0.65;
+}
+
+.calendar-days {
+    min-height: 260px;
+}
+
+.calendar-day {
+    width: 100%;
+    max-width: 48px;
+    aspect-ratio: 1 / 1;
+
+    justify-self: center;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 50%;
+
+    background: transparent;
+    color: inherit;
+
+    font: inherit;
+}
+/* A date containing a saved journal entry */
+.calendar-day.has-entry {
+    background: rgba(157, 117, 48, 0.18);
+
+    border: 1px solid rgba(157, 117, 48, 0.55);
+
+    color: #76551f;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.calendar-day.has-entry:active {
+    transform: scale(0.92);
+}
+
+/* Today's date */
+.calendar-day.today {
+    box-shadow:
+        inset 0 0 0 2px rgba(118, 85, 31, 0.35);
+}
+
+.calendar-help {
+    margin: 18px 0 14px;
+
+    text-align: center;
+
+    font-size: 0.8rem;
+    opacity: 0.65;
+}
+
+.calendar-close-button {
+    display: block;
+
+    margin: 0 auto;
 }
